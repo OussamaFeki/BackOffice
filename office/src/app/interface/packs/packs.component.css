@@ -1,0 +1,12 @@
+.example-card {
+    max-width: 400px;
+  }
+  .example-button-container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    
+  }
+  .example-flex-container button{
+    float: left;
+  }
