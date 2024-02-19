@@ -16,6 +16,9 @@ import { NewcustomsComponent } from './interface/newcustoms/newcustoms.component
 import { PacksComponent } from './interface/packs/packs.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +38,10 @@ import {MatCardModule} from '@angular/material/card';
     BrowserAnimationsModule,
     MatIconModule,
     MatCardModule, 
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]
