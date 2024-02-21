@@ -4,7 +4,7 @@ const Stade = require('../models/Stade');
 const stadeOwnerController = {
   // Create a new stade
   createStade: async (req, res) => {
-    const { name, location, capacity } = req.body;
+    const { name, location, capacity,stadeOwnerId } = req.body;
     
     try {
       // Create a new stade
@@ -12,15 +12,25 @@ const stadeOwnerController = {
         name,
         location,
         capacity,
-        stadeOwner: req.user.stadeOwnerId, // Assuming you have authentication middleware that sets req.user
+        stadeOwner: stadeOwnerId, // Assuming you have authentication middleware that sets req.user
       });
+       // Validate capacity
+       if (capacity < 6 || capacity > 22) {
+        return res.status(400).json({ error: 'Capacity must be between 6 and 22' });
+        }
 
       // Update the Stade_Owner's stades array with the new stade
-      const stadeOwner = await Stade_Owner.findById(req.user.stadeOwnerId);
-      stadeOwner.stades.push(newStade._id);
-      await stadeOwner.save();
+      const stadeOwner = await Stade_Owner.findById(stadeOwnerId);
+      if(stadeOwner.isApproved){
+        stadeOwner.stades.push(newStade._id);
+        await stadeOwner.save();
+        res.json({ message: 'Stade created successfully', stade: newStade });
+      }else{
+        res.status(500).send('stade owner is not approved');
+      }
+      
 
-      res.json({ message: 'Stade created successfully', stade: newStade });
+     
     } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');
@@ -54,33 +64,10 @@ const stadeOwnerController = {
       res.status(500).send('Internal Server Error');
     }
   },
-  // Create a new stade and add it
-  createAndAddStade: async (req, res) => {
-    const { name, location, capacity } = req.body;
-
-    try {
-      // Create a new stade
-      const newStade = await Stade.create({
-        name,
-        location,
-        capacity,
-      });
-
-      // Add the new stade to the Stade_Owner's stades array
-      const stadeOwner = await Stade_Owner.findById(req.user.stadeOwnerId);
-      stadeOwner.stades.push(newStade._id);
-      await stadeOwner.save();
-
-      res.json({ message: 'Stade created and added successfully', stade: newStade });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Internal Server Error');
-    }
-  },
   // Add a new Stade Owner
   addStadeOwner: async (req, res) => {
-    const { name, firstname, email, password, phone, city } = req.body;
-
+    const { name, firstname, email, password, phone, city, packId } = req.body;
+  
     try {
       const newStadeOwner = await Stade_Owner.create({
         name,
@@ -89,8 +76,9 @@ const stadeOwnerController = {
         password,
         phone,
         city,
+        pack: packId, // Assign the chosen pack to the 'pack' field
       });
-
+  
       res.json({ message: 'Stade Owner added successfully', stadeOwner: newStadeOwner });
     } catch (error) {
       console.error(error);

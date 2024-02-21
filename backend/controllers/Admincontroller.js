@@ -1,6 +1,7 @@
 const Stade_Owner = require('../models/StadeOwners');
 const Stade = require('../models/Stade');
 const Admin = require('../models/Admin');
+const Pack= require('../models/Pack')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const adminController = {
@@ -24,7 +25,7 @@ const adminController = {
       }
 
       // Generate a JWT token
-      const token = jwt.sign({ adminId: admin._id }, 'your_secret_key', { expiresIn: '1h' });
+      const token = jwt.sign({ adminId: admin._id }, process.env.JWT_SECRET, { expiresIn: '3d' });
 
       res.json({ token });
     } catch (error) {
@@ -35,14 +36,24 @@ const adminController = {
   // View pending Stade Owner registrations
   viewPendingRegistrations: async (req, res) => {
     try {
-      const pendingRegistrations = await Stade_Owner.find({ isApproved: false });
+      const pendingRegistrations = await Stade_Owner.find({ isApproved: false }).populate('pack','name price');;
       res.json(pendingRegistrations);
     } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');
     }
   },
+  viewApprovedStadeOwners : async (req, res) => {
+    try {
+        // Find all approved Stade Owners
+        const approvedStadeOwners = await Stade_Owner.find({ isApproved: true });
 
+        res.json(approvedStadeOwners);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+  },
   // Accept Stade Owner registration
   acceptRegistration: async (req, res) => {
     const { stadeOwnerId } = req.body;
@@ -93,14 +104,14 @@ const adminController = {
   },
   // Create a new pack
   createPack: async (req, res) => {
-    const { name, description, price, stades, features } = req.body;
+    const { name, description, price, cap_stades, features } = req.body;
 
     try {
       const newPack = await Pack.create({
         name,
         description,
         price,
-        stades,
+        cap_stades,
         features,
       });
 
@@ -177,6 +188,39 @@ const adminController = {
       res.status(500).send('Internal Server Error');
     }
   },
+  // Get all packs
+getAllPacks: async (req, res) => {
+    try {
+    const packs = await Pack.find();
+    res.json(packs);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+  // Add a new Stade Owner
+addStadeOwner: async (req, res) => {
+  const { name, firstname, email, password, phone, city, packId } = req.body;
+
+  try {
+    const newStadeOwner = await Stade_Owner.create({
+      name,
+      firstname,
+      email,
+      password,
+      phone,
+      city,
+      pack: packId,
+      isApproved: true, // Set isApproved to true for each new Stade Owner
+    });
+
+    res.json({ message: 'Stade Owner added successfully', stadeOwner: newStadeOwner });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+},
+
 };
 
 module.exports = adminController;

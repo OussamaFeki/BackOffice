@@ -1,12 +1,83 @@
+
+
+.example-button-container {
+  display: flex;
+  justify-content: flex-end; /* Align items to the end (right) of the container */
+  position: relative;
+  width: 100%;
+
+}
+.example-button-container button{
+  margin-right: 30px;
+}
+
+/* style of card */
 .example-card {
-    max-width: 400px;
-  }
-  .example-button-container {
-    display: flex;
-    position: relative;
-    width: 100%;
-    
-  }
-  .example-flex-container button{
-    float: left;
-  }
+  width: 350px;
+  min-height: 310px;
+}
+.card-container {
+  display: flex;
+  gap: 30px;
+  margin-left: 20px;
+}
+mat-divider{
+  border: solid black;
+  position: relative;
+  float: right;
+}
+mat-card-actions{
+  display: flex;
+  gap: 20px;
+}
+mat-card-title{
+  color: aquamarine;
+  
+}
+.example-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+mat-card-content {
+  flex-grow: 1;
+}
+
+mat-card-actions {
+  margin-top: auto;
+}
+
+#price{
+  text-align: right;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: large;
+}
+/* style of delete need button */
+#del{
+  width:fit-content;
+  border-radius: 100%;
+  border: none;
+  position: relative;
+  background: aliceblue;
+}
+#del:hover{
+  background:rgb(255, 35, 35);
+  color: white;
+}
+.feature{
+  width:100px;
+  margin-left: 0%;
+  
+}
+/* style of the add Feature  button */
+#add{
+  width: fit-content;
+  border-radius: 25px;
+  background: transparent;
+  color:black;
+}
+#add:hover{
+  background-color: var(--blue) ;
+  color: aliceblue;
+}

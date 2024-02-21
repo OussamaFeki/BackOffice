@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-newcustoms',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./newcustoms.component.css']
 })
 export class NewcustomsComponent {
-
+  pendingowners:any;
+  private ownersSubscription: Subscription;
+  constructor(private service:AuthService){
+    this.ownersSubscription = this.service.viewPendingRegistrations().subscribe((data)=>{
+      this.pendingowners=data
+    })
+  }
+  ngOnDestroy() {
+    // Unsubscribe to avoid memory leaks
+    if (this.ownersSubscription) {
+      this.ownersSubscription.unsubscribe();
+    }
+  }
 }

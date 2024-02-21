@@ -14,6 +14,8 @@ router.use(authenticateAdmin);
 
 // Admin actions for Stade_Owner
 router.get('/admin/stadeOwners/pending', adminController.viewPendingRegistrations);
+router.get('/admin/stadeOwners/approved', adminController.viewApprovedStadeOwners);
+
 router.put('/admin/stadeOwners/approve', adminController.acceptRegistration);
 router.delete('/admin/stadeOwners/approve',adminController.refuseRegistration);
 
@@ -21,6 +23,8 @@ router.delete('/admin/stadeOwners/approve',adminController.refuseRegistration);
 router.get('/admin/stades', adminController.viewAllStades);
 
 // Admin actions for Packs
+// Get all packs
+router.get('/admin/packs', adminController.getAllPacks);
 router.post('/admin/packs', adminController.createPack);
 router.delete('/admin/packs/:packId', adminController.deletePack);
 router.put('/admin/packs/:packId', adminController.editPack);

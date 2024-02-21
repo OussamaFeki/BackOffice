@@ -18,6 +18,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatDialogModule} from '@angular/material/dialog';
+import { NewOwnerComponent } from './interface/new-owner/new-owner.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     SignupComponent,
     NewcustomsComponent,
-    PacksComponent
+    PacksComponent,
+    NewOwnerComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +48,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
+    MatDialogModule, 
+    MatDividerModule,
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

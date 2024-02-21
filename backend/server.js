@@ -14,8 +14,9 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 // Add your Express routes and middleware here
-app.use('/api', adminRoutes);
 app.use('/api', stadeOwnerRoutes);
+app.use('/api', adminRoutes);
+
 // Add your Express routes and middleware here
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

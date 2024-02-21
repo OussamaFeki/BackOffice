@@ -1,21 +1,98 @@
-<div>
+<!-- Add  Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New Pack</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form">
+          <div class="mb-3">
+            <label for="name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="col-form-label">Description:</label>
+            <textarea class="form-control" id="description" formControlName="description"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="price" class="col-form-label">Price:</label>
+            <input type="text" class="form-control" id="price" formControlName="price">
+          </div>
+          <div class="mb-3">
+            <label for="cap_stades" class="col-form-label">Max Stades:</label>
+            <input type="text" class="form-control" id="cap_stades" formControlName="cap_stades">
+          </div>
+          <div formArrayName="features">
+            <div *ngFor="let feature of featuresFormArray.controls; let i = index">
+              <button id="del" (click)="removeFeature(i)"><i class="bi bi-bookmark-x"></i></button>
+              <input [formControlName]="i" class="form-control feature" placeholder="Feature {{ i + 1 }}" >
+              <!-- Add any additional HTML or styling as needed -->
+              <!--<button type="button" (click)="removeFeature(i)">Remove Feature</button>-->
+            </div>
+          </div>
+          
+          <button type="button" id="add" (click)="addFeature()" >Add Feature</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mat-raised-button data-bs-dismiss="modal">Close</button>
+        <button type="button" mat-raised-button color="primary" (click)="add()">Create Pack</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <div class="example-button-container">
-  <button mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon">
+  <button mat-mini-fab color="primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     <mat-icon>add</mat-icon>
   </button>
 </div>
-<mat-card class="example-card">
+<div class="card-container">
+  <div *ngFor="let pack of packs; let i=index" class="example-card">
+    <mat-card class="example-card">
     <mat-card-header>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      <mat-card-title>{{ pack.name }}</mat-card-title>
+      <mat-divider [inset]="true"></mat-divider>
+      <mat-card-subtitle>{{ pack.description }}</mat-card-subtitle>
     </mat-card-header>
+    <br>
     <mat-card-content>
-      <p>This card indeterminates progress bar.</p>
-      <p>{{longText}}</p>
+      <p>{{ pack.cap_stades }} Stades</p>
+      <p *ngFor="let feature of pack.features">{{ feature }}</p>
+      <p id="price">{{ pack.price | currency }}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
+      <button mat-raised-button color="accent" >
+        <mat-icon>edit</mat-icon>Edit
+      </button>
+      <button mat-raised-button data-bs-toggle="modal" [attr.data-bs-target]="'#delete-' + i" color="warn">
+        <mat-icon>delete</mat-icon>Delete
+      </button>
+     <!-- Delete Modal -->
     </mat-card-actions>
-  </mat-card>
+    <div class="modal fade" [id]="'delete-' + i" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Want to delete this pack?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            <button type="button" mat-raised-button color="warn" data-bs-dismiss="modal" (click)="delete(pack._id, i)">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card> 
+  </div>
 </div>
+
+

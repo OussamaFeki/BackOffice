@@ -1,1 +1,48 @@
-<p>newcustoms works!</p>
+<main class="table" id="customers_table">
+    <section class="table__header">
+        <h1>Customers</h1>
+        <div class="export__file">
+            <label for="export-file" class="export__file-btn" title="Export File"></label>
+            <input type="checkbox" id="export-file">
+            <div class="export__file-options">
+                <label>Export As &nbsp; &#10140;</label>
+                <label for="export-file" id="toPDF">PDF <img src="images/pdf.png" alt=""></label>
+                <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""></label>
+                <label for="export-file" id="toCSV">CSV <img src="images/csv.png" alt=""></label>
+                <label for="export-file" id="toEXCEL">EXCEL <img src="images/excel.png" alt=""></label>
+            </div>
+        </div>
+    </section>
+    <section class="table__body">
+        <table>
+            <thead>
+                <tr>
+                    <th> Stadium Owner <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Location <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Creation Date <span class="icon-arrow">&UpArrow;</span></th>
+                    <th> Phone <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Pack Name<span class="icon-arrow">&UpArrow;</span> </th>
+                    <th>Pack Price<span class="icon-arrow">&UpArrow;</span> </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let owner of pendingowners">
+                    <td>{{ owner.firstname }} {{ owner.name }}</td>
+                    <td>{{ owner.city }}</td>
+                    <td>{{ owner.LastPackDate | date:'dd MMM, yyyy' }}</td>
+                    <td> <strong>{{ owner.phone }}</strong></td>
+                    <td *ngIf="owner.pack">
+                        {{ owner.pack.name }} 
+                    </td><td *ngIf="owner.pack">
+                        ${{ owner.pack.price }}
+                    </td>
+                    <td><button mat-raised-button color="primary"><mat-icon>add_circle</mat-icon>Accept</button></td>
+                    <td><button mat-raised-button color="warn"><mat-icon>highlight_off</mat-icon>Refuse</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+

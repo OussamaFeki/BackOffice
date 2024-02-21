@@ -7,7 +7,10 @@ const Stade_OwnerSchema = new mongoose.Schema({
     phone:{type: Number},
     city:{type:String},
     stades: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Stade' }], // Assuming Stade is another model/schema
-    isApproved: { type: Boolean, default: false }, // New field to track approval status
+    isApproved: { type: Boolean, default: false },
+    Wantupdate: { type: Boolean, default: false }, // New field to track approval status
+    LastPackDate: { type: Date, default: Date.now },
+    pack:{ type: mongoose.Schema.Types.ObjectId, ref: 'Pack' }
   });
-  const Stade_Owner= mongoose.model('trust', Stade_OwnerSchema );
+  const Stade_Owner= mongoose.model('Stade_Owner', Stade_OwnerSchema );
 module.exports = Stade_Owner;

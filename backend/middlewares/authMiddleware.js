@@ -15,6 +15,9 @@ function authenticateToken(req, res, next) {
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) {
+      if (err.name === 'TokenExpiredError') {
+        return res.status(401).json({ error: 'Unauthorized: Token expired' });
+      }
       return res.status(403).json({ error: 'Forbidden: Invalid token' });
     }
 

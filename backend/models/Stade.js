@@ -4,7 +4,8 @@ const StadeSchema = new mongoose.Schema({
     location: { type: String, required: true },
     capacity: { type: Number, required: true },
     stadeOwner: { type: mongoose.Schema.Types.ObjectId, ref: 'Stade_Owner' },
-    // Add other properties specific to your Stade model
+    isVIP:{ type: Boolean, default: false },
+    createdAt:{ type: Date, default: Date.now },
 });
 
 const Stade = mongoose.model('Stade', StadeSchema);
