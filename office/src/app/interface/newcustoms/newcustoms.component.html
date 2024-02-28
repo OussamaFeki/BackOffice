@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let owner of pendingowners">
+                <tr *ngFor="let owner of pendingowners;let i=index">
                     <td>{{ owner.firstname }} {{ owner.name }}</td>
                     <td>{{ owner.city }}</td>
                     <td>{{ owner.LastPackDate | date:'dd MMM, yyyy' }}</td>
@@ -39,7 +39,7 @@
                         ${{ owner.pack.price }}
                     </td>
                     <td><button mat-raised-button color="primary"><mat-icon>add_circle</mat-icon>Accept</button></td>
-                    <td><button mat-raised-button color="warn"><mat-icon>highlight_off</mat-icon>Refuse</button></td>
+                    <td><button mat-raised-button color="warn" (click)="refuse(owner._id,i)"><mat-icon>highlight_off</mat-icon>Refuse</button></td>
                 </tr>
             </tbody>
         </table>

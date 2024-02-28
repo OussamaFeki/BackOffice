@@ -21,18 +21,20 @@
                 <span class="text">Phone Number</span>
                 <input type="number" formControlName="phone" placeholder="Phone Number" required>
             </div>
-
+            <div class="input-box">
+                <span class="text">City</span>
+                <input type="text" formControlName="city" placeholder="Please enter your City" required>
+            </div>
             <div class="input-box">
                 <span class="text">Password</span>
                 <input type="password" formControlName="password" placeholder="Please enter your" required>
             </div>
         </div>
         <div class="card-container">
-            <div *ngFor="let pack of packs; let i=index" class="example-card">
-              <mat-card class="example-card">
+            <div *ngFor="let pack of packs| paginate: { itemsPerPage: 3, currentPage: p }; let i=index" class="example-card">
+              <mat-card class="example-card" (click)="select(pack)" [class.selected]="pack.selected">
               <mat-card-header>
                 <mat-card-title>{{ pack.name }}</mat-card-title>
-                <mat-divider [inset]="true"></mat-divider>
                 <mat-card-subtitle>{{ pack.description }}</mat-card-subtitle>
               </mat-card-header>
               <br>
@@ -41,11 +43,11 @@
                 <p *ngFor="let feature of pack.features">{{ feature }}</p>
                 <p id="price">{{ pack.price | currency }}</p>
               </mat-card-content>
-              <mat-card-actions>
-              </mat-card-actions>
             </mat-card> 
             </div>
-          </div>
+            
+        </div>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
         <div class="btn">
             <input type="submit" value="Register" [disabled]="stadeOwnerForm.invalid">
         </div>

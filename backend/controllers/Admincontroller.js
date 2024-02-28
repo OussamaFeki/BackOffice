@@ -46,7 +46,7 @@ const adminController = {
   viewApprovedStadeOwners : async (req, res) => {
     try {
         // Find all approved Stade Owners
-        const approvedStadeOwners = await Stade_Owner.find({ isApproved: true });
+        const approvedStadeOwners = await Stade_Owner.find({ isApproved: true }).populate('pack','name price');;
 
         res.json(approvedStadeOwners);
     } catch (error) {
@@ -77,7 +77,7 @@ const adminController = {
 
   // Refuse Stade Owner registration and delete from database
   refuseRegistration: async (req, res) => {
-    const { stadeOwnerId } = req.body;
+    const { stadeOwnerId } = req.params;
 
     try {
       const stadeOwner = await Stade_Owner.findByIdAndDelete(stadeOwnerId);
@@ -199,27 +199,27 @@ getAllPacks: async (req, res) => {
     }
   },
   // Add a new Stade Owner
-addStadeOwner: async (req, res) => {
-  const { name, firstname, email, password, phone, city, packId } = req.body;
+  addStadeOwner: async (req, res) => {
+    const { name, firstname, email, password, phone, city, pack } = req.body;
 
-  try {
-    const newStadeOwner = await Stade_Owner.create({
-      name,
-      firstname,
-      email,
-      password,
-      phone,
-      city,
-      pack: packId,
-      isApproved: true, // Set isApproved to true for each new Stade Owner
-    });
+    try {
+      const newStadeOwner = await Stade_Owner.create({
+        name,
+        firstname,
+        email,
+        password,
+        phone,
+        city,
+        pack: pack,
+        isApproved: true, // Set isApproved to true for each new Stade Owner
+      });
 
-    res.json({ message: 'Stade Owner added successfully', stadeOwner: newStadeOwner });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal Server Error');
-  }
-},
+      res.json({ message: 'Stade Owner added successfully', stadeOwner: newStadeOwner });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
 
 };
 

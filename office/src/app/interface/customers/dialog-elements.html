@@ -1,0 +1,8 @@
+<div class="dialogue">
+  <h1 mat-dialog-title>Confirmation</h1>
+<div mat-dialog-content>Want to delete this Stade Owner?</div>
+<div mat-dialog-actions id="button-group">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onNoClick()">No</button>
+  <button type="button"[id]="'confirm'" mat-raised-button color="warn" data-bs-dismiss="modal" (click)="delete(data.id,data.i)">Confirm</button>
+</div>
+</div>

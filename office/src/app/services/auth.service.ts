@@ -34,6 +34,15 @@ export class AuthService {
     });
     return this.http.get<any[]>(url, { headers });
   }
+  creteOwner(Data: any): Observable<any> {
+    const url = `${this.apiUrl}/stadeOwner/addStadeOwner`;
+    const token = localStorage.getItem(this.tokenKey);
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.post(url, Data, { headers });
+  }
   acceptRegistration(userId: string): Observable<any> {
     const url = `${this.apiUrl}/stadeOwners/approve`;
     const token = localStorage.getItem(this.tokenKey);
@@ -45,17 +54,17 @@ export class AuthService {
     return this.http.put(url, body, { headers });
   }
   refuseRegistration(userId: string): Observable<any> {
-    const url = `${this.apiUrl}/stadeOwners/approve`;
+    const url = `${this.apiUrl}/stadeOwners/approve/${userId}`;
     const token = localStorage.getItem(this.tokenKey);
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    const options = {
-      headers,
-      body: { userId }, // Adjust the body structure based on your API requirements
-    };
+    // const options = {
+    //   headers,
+    //   body: { userId }, // Adjust the body structure based on your API requirements
+    // };
 
-    return this.http.delete(url, options);
+    return this.http.delete(url, { headers });
   }
     // Function to view all stades
   viewAllStades(): Observable<any[]> {

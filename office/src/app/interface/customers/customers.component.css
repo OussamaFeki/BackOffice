@@ -308,3 +308,17 @@ thead th.active,tbody td.active {
   background-color: var(--blue);
   color: white;
 }
+#confirm{
+  color: white;
+  background-color: #b30021;
+}
+#button-group{
+  float:inline-end;
+  margin-right: 8px;
+  margin-bottom: 0px;
+}
+.dialogue{
+  width: 400px;
+  height: 150px;
+  padding: 6px;
+}

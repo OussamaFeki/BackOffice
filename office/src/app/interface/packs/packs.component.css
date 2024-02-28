@@ -1,11 +1,9 @@
-
-
 .example-button-container {
   display: flex;
   justify-content: flex-end; /* Align items to the end (right) of the container */
   position: relative;
   width: 100%;
-
+  margin-bottom: 15px;
 }
 .example-button-container button{
   margin-right: 30px;
@@ -34,6 +32,11 @@ mat-card-title{
   color: aquamarine;
   
 }
+mat-card-header{
+  width: 100%;
+  border-right:1em solid var(--blue) ;
+}
+
 .example-card {
   display: flex;
   flex-direction: column;
@@ -42,6 +45,9 @@ mat-card-title{
 
 mat-card-content {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 mat-card-actions {
@@ -52,6 +58,7 @@ mat-card-actions {
   text-align: right;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: large;
+  align-self: flex-end;  /* Align the price to the end of the container */
 }
 /* style of delete need button */
 #del{
@@ -80,4 +87,25 @@ mat-card-actions {
 #add:hover{
   background-color: var(--blue) ;
   color: aliceblue;
+
+}
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .example-card {
+    width: 100%; /* Take up the full width of the container */
+  }
+
+  .card-container {
+    flex-direction: column; /* Stack cards vertically on smaller screens */
+    gap: 15px;
+    margin-left: 0;
+  }
+
+  .example-button-container {
+    justify-content: center; /* Center the button container on smaller screens */
+  }
+
+  .example-button-container button {
+    margin-right: 0; /* Remove right margin for buttons on smaller screens */
+  }
 }

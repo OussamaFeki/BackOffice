@@ -24,7 +24,7 @@ import { NewOwnerComponent } from './interface/new-owner/new-owner.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +53,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatDividerModule,
     MatFormFieldModule, 
     MatInputModule, 
-    MatSelectModule
+    MatSelectModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

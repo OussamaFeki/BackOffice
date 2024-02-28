@@ -35,7 +35,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let owner of owners">
+                <tr *ngFor="let owner of owners;let i=index">
                     <td>{{ owner.firstname }} {{ owner.name }}</td>
                     <td>{{ owner.city }}</td>
                     <td>{{ owner.LastPackDate | date:'dd MMM, yyyy' }}</td>
@@ -47,10 +47,32 @@
                     <td *ngIf="owner.pack">
                         {{ owner.pack.name }} - ${{ owner.pack.price }}
                     </td>
+                    
                     <td><button mat-raised-button color="primary"><mat-icon>article</mat-icon>Details</button></td>
+                    <td><button mat-raised-button (click)="openDialog(owner._id,i)" color="warn">
+                        <mat-icon>delete</mat-icon>Delete</button>
+                    </td>
+                   <!-- <div class="modal" [id]="'delete-' + i" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              Want to delete this Stade Owner?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                              <button type="button" mat-raised-button color="warn" data-bs-dismiss="modal" (click)="delete(owner._id,i)">Confirm</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>-->
                 </tr>
             </tbody>
         </table>
+        
     </section>
 </main>
 

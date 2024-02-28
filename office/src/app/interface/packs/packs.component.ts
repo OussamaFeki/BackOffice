@@ -15,6 +15,7 @@ export class PacksComponent implements OnDestroy{
   originally bred for hunting.`;
   packs: any[]=[];
   getservice:Subscription;
+  p: number = 1;
   constructor(private service:AuthService,private fb:FormBuilder){
     this.getservice=this.service.getAllPacks().subscribe(
       (response) => {
@@ -69,10 +70,12 @@ export class PacksComponent implements OnDestroy{
     }
   }
   delete(id:any,i:any){
-     this.service.deletePack(id).subscribe((data)=>{
-       console.log(data)
-       this.packs.splice(i,1);
-     })
+      this.service.deletePack(id).subscribe((data)=>{
+        console.log(data)
+        this.packs.splice(i+((this.p-1)*3),1);
+      })
+    console.log(i+((this.p-1)*3))
+    console.log(this.p);
   }
   ngOnDestroy(): void {
       this.getservice.unsubscribe()

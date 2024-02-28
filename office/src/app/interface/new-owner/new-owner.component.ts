@@ -12,6 +12,7 @@ export class NewOwnerComponent {
   stadeOwnerForm: FormGroup;
   packs: any[]=[];
   getservice:Subscription;
+  p: number = 1;
   constructor(private formBuilder: FormBuilder,private service:AuthService) {
     this.getservice=this.service.getAllPacks().subscribe(
       (response) => {
@@ -33,7 +34,26 @@ export class NewOwnerComponent {
       pack: ['', Validators.required]
     });
   }
+  select(pack:any){
+    if (pack.selected) {
+      pack.selected = false;
+    } else {
+      this.packs.forEach((p: any) => {
+        p.selected = false;
+      });
+      pack.selected = true;
+    }
+    this.stadeOwnerForm.patchValue({
+      pack:pack._id
+    });
+    console.log(this.stadeOwnerForm.value)
+  }
   onSubmit(){
-
+    if(this.stadeOwnerForm.valid){
+      this.service.creteOwner(this.stadeOwnerForm.value).subscribe((data)=>{
+        console.log(data);
+      })
+    }
+    
   }
 }

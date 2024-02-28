@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./newcustoms.component.css']
 })
 export class NewcustomsComponent {
-  pendingowners:any;
+  pendingowners:any[]=[];
   private ownersSubscription: Subscription;
   constructor(private service:AuthService){
     this.ownersSubscription = this.service.viewPendingRegistrations().subscribe((data)=>{
@@ -20,5 +20,12 @@ export class NewcustomsComponent {
     if (this.ownersSubscription) {
       this.ownersSubscription.unsubscribe();
     }
+  }
+  refuse(id:any,i:any){
+    this.service.refuseRegistration(id).subscribe((data)=>{
+      console.log(data)
+      this.pendingowners.splice(i,1)
+    })
+   
   }
 }
