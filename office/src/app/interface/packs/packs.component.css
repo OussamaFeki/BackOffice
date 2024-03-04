@@ -29,12 +29,12 @@ mat-card-actions{
   gap: 20px;
 }
 mat-card-title{
-  color: aquamarine;
-  
+	color: var(--bluwhiter);
+	
 }
 mat-card-header{
   width: 100%;
-  border-right:1em solid var(--blue) ;
+  border-right:1em solid var(--bluer) ;
 }
 
 .example-card {

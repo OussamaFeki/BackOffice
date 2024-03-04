@@ -14,7 +14,7 @@
         </div>
     </section>
     <section class="table__body">
-        <table>
+        <table *ngIf="stadiums && stadiums.length > 0; else noOwners">
             <thead>
                 <tr>
                     <th> Stadium name <span class="icon-arrow">&UpArrow;</span></th>
@@ -41,5 +41,9 @@
             </tbody>
         </table>
     </section>
+     <!-- Message when there are no owners -->
+<ng-template #noOwners>
+    <p>There is no stadium right now.</p>
+  </ng-template>
 </main>
 

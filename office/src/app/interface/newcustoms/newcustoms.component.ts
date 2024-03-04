@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NewcustomsComponent {
   pendingowners:any[]=[];
+  p:number=0;
   private ownersSubscription: Subscription;
   constructor(private service:AuthService){
     this.ownersSubscription = this.service.viewPendingRegistrations().subscribe((data)=>{

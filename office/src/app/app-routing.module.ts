@@ -9,6 +9,7 @@ import { NewcustomsComponent } from './interface/newcustoms/newcustoms.component
 import { PacksComponent } from './interface/packs/packs.component';
 import { AdminAuthGuard } from './gaurds/admin-auth.guard';
 import { NewOwnerComponent } from './interface/new-owner/new-owner.component';
+import { PlayersComponent } from './interface/players/players.component';
 
 const routes: Routes = [
   {path:'interface',component:InterfaceComponent,canActivate: [AdminAuthGuard],children:[
@@ -16,7 +17,8 @@ const routes: Routes = [
     {path:'stadiums',component:StadiumsComponent},
     {path:'newcustoms',component:NewcustomsComponent},
     {path:'packs',component:PacksComponent},
-    {path:'addowner',component:NewOwnerComponent}
+    {path:'addowner',component:NewOwnerComponent},
+    {path:'players',component:PlayersComponent}
   ]},
   {path:'',component:LoginComponent},
   

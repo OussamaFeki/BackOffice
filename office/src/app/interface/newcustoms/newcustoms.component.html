@@ -1,6 +1,6 @@
 <main class="table" id="customers_table">
     <section class="table__header">
-        <h1>Customers</h1>
+        <h1>pending stadium owner</h1>
         <div class="export__file">
             <label for="export-file" class="export__file-btn" title="Export File"></label>
             <input type="checkbox" id="export-file">
@@ -14,7 +14,7 @@
         </div>
     </section>
     <section class="table__body">
-        <table>
+        <table *ngIf="pendingowners && pendingowners.length > 0; else noOwners">
             <thead>
                 <tr>
                     <th> Stadium Owner <span class="icon-arrow">&UpArrow;</span></th>
@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let owner of pendingowners;let i=index">
+                <tr *ngFor="let owner of pendingowners| paginate: { itemsPerPage: 6, currentPage: p };let i=index">
                     <td>{{ owner.firstname }} {{ owner.name }}</td>
                     <td>{{ owner.city }}</td>
                     <td>{{ owner.LastPackDate | date:'dd MMM, yyyy' }}</td>
@@ -44,5 +44,10 @@
             </tbody>
         </table>
     </section>
+    <pagination-controls (pageChange)="p = $event" *ngIf="pendingowners && pendingowners.length > 0"></pagination-controls>
+    <!-- Message when there are no owners -->
+<ng-template #noOwners>
+    <p>There is no pending stadium owner right now.</p>
+  </ng-template>
 </main>
 

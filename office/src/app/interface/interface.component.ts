@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-interface',
@@ -6,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./interface.component.css']
 })
 export class InterfaceComponent implements OnInit {
+  numberofowner:any
+  constructor(private service:AuthService){
+    this.service.getNumberStadeOwners().subscribe((data)=>{
+      this.numberofowner=data;
+      console.log(this.numberofowner);
+    })
+  }
   ngOnInit(): void {
     let list = document.querySelectorAll(".navigation li");
 

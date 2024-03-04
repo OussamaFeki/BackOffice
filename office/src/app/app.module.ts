@@ -25,6 +25,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DetailsComponent } from './interface/details/details.component';
+import { PlayersComponent } from './interface/players/players.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SignupComponent,
     NewcustomsComponent,
     PacksComponent,
-    NewOwnerComponent
+    NewOwnerComponent,
+    DetailsComponent,
+    PlayersComponent
   ],
   imports: [
     BrowserModule,

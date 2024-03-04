@@ -9,11 +9,14 @@
     box-sizing: border-box;
 }
 :root {
-    --blue: #2a2185;
+    --blue: #0F2167;
     --white: #fff;
     --gray:#f5f5f5;
     --black1:#222;
+    --bluer:#3559E0;
+    --bluwhiter:#4CB9E7;
     --black2:#999;
+    --beige:#FFECD6;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

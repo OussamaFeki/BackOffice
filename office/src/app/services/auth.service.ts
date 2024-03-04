@@ -26,6 +26,26 @@ export class AuthService {
     // Include the token in the request headers
     return this.http.get<any[]>(url, { headers });
   }
+  //Function to get all Players
+  getAllPlayers(): Observable<any[]> {
+    const url = `${this.apiUrl}/players`;
+    const token =localStorage.getItem(this.tokenKey)
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    // Include the token in the request headers
+    return this.http.get<any[]>(url, { headers });
+  }
+  //Function to get the number of Stade Owners 
+  getNumberStadeOwners(): Observable<any[]> {
+    const url = `${this.apiUrl}/stadeOwners/numberofowner`;
+    const token =localStorage.getItem(this.tokenKey)
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    // Include the token in the request headers
+    return this.http.get<any[]>(url, { headers });
+  }
   viewPendingRegistrations(): Observable<any[]> {
     const url = `${this.apiUrl}/stadeOwners/pending`;
     const token =localStorage.getItem(this.tokenKey)

@@ -12,7 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 export class CustomersComponent implements OnDestroy {
   owners:any;
   private ownersSubscription: Subscription;
-
+  p:number=0;
   constructor(private service:AuthService,public dialog: MatDialog){
     this.ownersSubscription = this.service.getApprovedStadeOwners().subscribe((data)=>{
       this.owners=data

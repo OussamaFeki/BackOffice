@@ -48,10 +48,12 @@ export class NewOwnerComponent {
     });
     console.log(this.stadeOwnerForm.value)
   }
+  
   onSubmit(){
     if(this.stadeOwnerForm.valid){
       this.service.creteOwner(this.stadeOwnerForm.value).subscribe((data)=>{
         console.log(data);
+        this.stadeOwnerForm.reset()
       })
     }
     

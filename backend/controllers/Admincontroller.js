@@ -1,7 +1,8 @@
 const Stade_Owner = require('../models/StadeOwners');
 const Stade = require('../models/Stade');
 const Admin = require('../models/Admin');
-const Pack= require('../models/Pack')
+const Pack= require('../models/Pack');
+const Player=require('../models/Players')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const adminController = {
@@ -91,6 +92,10 @@ const adminController = {
       console.error(error);
       res.status(500).send('Internal Server Error');
     }
+  },
+  givelength: async(req, res) => {
+    const stadeOwnerLength = (await Stade_Owner.find()).length;
+    res.json(stadeOwnerLength);
   },
   // View all stades and associated Stade Owners
   viewAllStades: async (req, res) => {
@@ -215,6 +220,40 @@ getAllPacks: async (req, res) => {
       });
 
       res.json({ message: 'Stade Owner added successfully', stadeOwner: newStadeOwner });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+  //view Player
+  viewallPlayer:async(req,res)=>{
+    try {
+      const players = await Player.find();
+      res.status(200).json(players);
+    } catch (error) {
+      console.error('Error getting players:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
+   // Create a new player with password encryption
+   createPlayer: async (req, res) => {
+    const { name, firstname, NickName,email,city, password, phone } = req.body;
+
+    try {
+      // Hash the password before storing it
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      const newPlayer = await Player.create({
+        name,
+        firstname,
+        email,
+        NickName,
+        city,
+        password: hashedPassword,
+        phone,
+      });
+
+      res.json({ message: 'Player created successfully', player: newPlayer });
     } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');

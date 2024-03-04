@@ -113,6 +113,13 @@
   .cardBox .card:hover .iconBx {
     color: var(--white);
   }
+  /* icons */
+  mat-icon{
+    font-size: 4.5rem;
+    width: 70px;
+    height: 70px;
+
+  }
   @media (max-width: 480px) {
     .cardBox {
       grid-template-columns: repeat(1, 1fr);

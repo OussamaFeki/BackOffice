@@ -16,6 +16,7 @@ main.table {
 
   overflow: hidden;
 }
+
 .table__header {
   width: 100%;
   height: 10%;
@@ -112,7 +113,8 @@ thead th {
   position: sticky;
   top: 0;
   left: 0;
-  background-color: #d5d1defe;
+  color: white;
+  background-color: var(--bluer);
   cursor: pointer;
   text-transform: capitalize;
 }
@@ -300,7 +302,7 @@ thead th.active,tbody td.active {
   display: flex;
   justify-content: flex-end; /* Align items to the end (right) of the container */
   position: relative;
-  width: 100%;
+  width:74%;
 
 }
 .example-button-container button{
@@ -321,4 +323,21 @@ thead th.active,tbody td.active {
   width: 400px;
   height: 150px;
   padding: 6px;
+}
+/* Style for the message when there are no owners */
+p {
+  font-size: 18px;
+  color: #555;
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 400px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* button detail style */
+button#detail{
+  background-color: var(--blue);
+  color: white;
 }

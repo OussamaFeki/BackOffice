@@ -1,5 +1,5 @@
 .main{
-	background: rgba(10, 10, 10, .35);
+	background: var(--beige);
 	width: 100%;
 	max-width: 1500px;
 	padding: 30px 40px;
@@ -9,7 +9,7 @@
 	position: relative;
 	font-size: 30px;
 	font-weight: 700;
-	color: #faf9f6;
+	color: black;
 	margin-bottom: 10px;
 }
 .title::before{
@@ -19,7 +19,7 @@
 	bottom: -8px;
 	height: 3px;
 	width: 60px;
-	background: #ff328e;
+	background:var(--bluwhiter);
 }
 form .main-box{
 	display: flex;
@@ -34,37 +34,38 @@ form .main-box .input-box{
 form .main-box .input-box input{
 	width: 100%;
 	height: 50px;
-	background: rgba(255, 255, 255, .1);
-	color: #faf9f6;
+	background: white;
+	color: black;
 	outline: none;
 	border-radius: 8px;
-	border: 1px solid rgba(255, 255, 255, .09);
+	border: 3px solid rgba(255, 255, 255, .09);
 	padding-left: 17px;
 	font-size: 1rem;
 	transition: all .40s ease;
 }
+
 .main-box .input-box .text{
 	display: block;
 	margin-bottom: 8px;
-	color: #faf9f6;
+	color: black;
 	font-weight: 500;
 }
 form .main-box .input-box input:focus,
 form .main-box .input-box input:valid{
-	border-color: #faf9f6;
+	border-color: black;
 }
 
 form .container .gender{
 	font-size: 22px;
 	font-weight: 500;
-	color: #faf9f6;
+	color: black;
 }
 form .container .category{
 	display: flex;
 	justify-content: space-between;
 	width: 70%;
 	margin: 10px 0;
-	color: #faf9f6;
+	color: black;
 }
 .container .category label{
 	display: flex;
@@ -74,14 +75,14 @@ form .container .category{
 	width: 17px;
 	height: 17px;
 	border-radius: 50%;
-	background: #ff328e;
+	background:var(--bluwhiter);
 	margin-right: 8px;
 	border: 4px solid transparent;
 }
 #circle-1:checked ~ .category label .one,
 #circle-2:checked ~ .category label .two,
 #circle-3:checked ~ .category label .three{
-	border-color: #faf9f6;
+	border-color: black;
 }
 form input[type= "radio"]{
 	display: none;
@@ -95,7 +96,7 @@ form .btn input{
 	width: 100%;
 	outline: none;
 	background: rgba(255, 255, 255, .1);
-	color: #faf9f6;
+	color: black;
 	border-radius: 8px;
 	border: none;
 	font-size: 20px;
@@ -104,7 +105,7 @@ form .btn input{
 	transition: all .40s ease;
 }
 form .btn input:hover{
-	background: #ff328e;
+	background: var(--bluwhiter);
 }
 
 @media (max-width: 640px){
@@ -155,12 +156,12 @@ form .btn input:hover{
 	gap: 20px;
   }
   mat-card-title{
-	color: aquamarine;
+	color: var(--bluwhiter);
 	
   }
   mat-card-header{
 	width: 100%;
-	border-right:1em solid var(--blue) ;
+	border-right:1em solid var(--bluer) ;
   }
   
   .example-card {
