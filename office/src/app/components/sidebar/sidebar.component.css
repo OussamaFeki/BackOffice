@@ -12,23 +12,29 @@
     position: fixed;
     width: 300px;
     height: 100%;
-    background: var(--blue);
-    border-left: 10px solid var(--blue);
     transition: 0.5s;
     overflow: hidden;
+}
+#first{
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+}
+#second{
+  background: orange;
+  border-left: 10px solid orange;
 }
   .navigation.active {
     width: 80px;
   }
   
-  .navigation ul {
+  ul {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
   }
   
-  .navigation ul li {
+  ul li {
     position: relative;
     width: 100%;
     list-style: none;
@@ -36,17 +42,28 @@
     border-bottom-left-radius: 30px;
   }
   
-  .navigation ul li:hover,
-  .navigation ul li.hovered {
+  ul li:hover,
+  ul li.hovered {
     background-color: var(--white);
   }
   
-  .navigation ul li:nth-child(1) {
+  ul li:nth-child(1) {
     margin-bottom: 40px;
-    pointer-events: none;
+    /* pointer-events: none; */
   }
-  
-  .navigation ul li a {
+  mat-expansion-panel{
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  mat-accordion{
+    border: none;
+    box-shadow: none;
+  }
+  mat-expansion-panel a {
+    cursor: pointer;
+  }
+  ul li a {
     position: relative;
     display: block;
     width: 100%;
@@ -54,12 +71,12 @@
     text-decoration: none;
     color: var(--white);
   }
-  .navigation ul li:hover a,
-  .navigation ul li.hovered a {
+  ul li:hover a,
+  ul li.hovered a {
     color: var(--blue);
   }
   
-  .navigation ul li a .icon {
+  a .icon {
     position: relative;
     display: block;
     min-width: 60px;
@@ -67,8 +84,9 @@
     line-height: 75px;
     text-align: center;
   }
+
   /* icons */
-  .navigation ul li a .icon mat-icon {
+  a .icon mat-icon {
     font-size: 1.5rem;
   }
   /* Logos */
@@ -80,7 +98,7 @@
     padding: 9px 10px;
     font-size: x-large;
   }
-  .navigation ul li a .title {
+  a .title {
     position: relative;
     display: block;
     padding: 0 10px;
@@ -90,8 +108,8 @@
     white-space: nowrap;
   }
   /* --------- curve outside ---------- */
-.navigation ul li:hover a::before,
-.navigation ul li.hovered a::before {
+ul li:hover a::before,
+ul li.hovered a::before {
   content: "";
   position: absolute;
   right: 0;
@@ -103,8 +121,8 @@
   box-shadow: 35px 35px 0 10px var(--white);
   pointer-events: none;
 }
-.navigation ul li:hover a::after,
-.navigation ul li.hovered a::after {
+ul li:hover a::after,
+ul li.hovered a::after {
   content: "";
   position: absolute;
   right: 0;

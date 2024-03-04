@@ -1,4 +1,4 @@
-<div class="navigation">
+<div *ngIf="iskickoff" class="navigation" id="first">
         <ul>
             <li>
                 <a href="#">
@@ -93,4 +93,119 @@
             </li>
         </ul>
 </div>
+<div *ngIf="!iskickoff" class="navigation" id="second">
+    <ul>
+        <li>
+            <!--<a href="#">
+                <span class="icon">
+                    <img src="../../../assets/images/kickoff.png" id="logo" alt=""/>
+                </span>
+                <span class="title" id="logotitle">otherApp</span>
+            </a>-->
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a>
+                            <span class="icon">
+                                <img src="../../../assets/images/kickoff.png" id="logo" alt=""/>
+                            </span>
+                            <span class="title" id="logotitle">otherApp</span>
+                        </a>
+                    </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <a (click)="change()">
+                        <span class="icon">
+                            <img src="../../../assets/images/kickoff.png" id="logo" alt=""/>
+                        </span>
+                        <span class="title" id="logotitle">KickOff</span>
+                    </a>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </li>
 
+      
+
+        <li>
+            <a routerLink="/interface">
+                <span class="icon">
+                    <mat-icon>
+                        people
+                    </mat-icon>
+                </span>
+                <span class="title">Stades Owners</span>
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="newcustoms">
+                <span class="icon">
+                    <mat-icon>group_add</mat-icon>  
+                </span>
+                <span class="title">New Stades Owner</span>
+            </a>
+        </li>
+        <li>
+            <a routerLink="players">
+                <span class="icon">
+                    <mat-icon>
+                        sports_soccer
+                    </mat-icon>  
+                </span>
+                <span class="title">Players</span>
+            </a>
+        </li>
+        <li>
+            <a routerLink="packs">
+                <span class="icon">
+                    <mat-icon>
+                        inventory
+                    </mat-icon>
+                </span>
+                <span class="title"> Packs</span>
+            </a>
+        </li>
+
+       <!-- <li>
+            <a href="#">
+                <span class="icon">
+                    <mat-icon>
+                        chat_bubble
+                    </mat-icon>
+                </span>
+                <span class="title">Messages</span>
+            </a>
+        </li>-->
+        <li>
+            <a routerLink="stadiums">
+                <span class="icon">
+                    <mat-icon>stadium</mat-icon>  
+                </span>
+                <span class="title">Stadiums</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href="#">
+                <span class="icon">
+                    <mat-icon>
+                        lock
+                    </mat-icon>
+                </span>
+                <span class="title">Password</span>
+            </a>
+        </li>
+
+        <li>
+            <a (click)="logout()">
+                <span class="icon">
+                    <mat-icon>
+                        logout
+                    </mat-icon>
+                </span>
+                <span class="title">Sign Out</span>
+            </a>
+        </li>
+    </ul>
+</div>

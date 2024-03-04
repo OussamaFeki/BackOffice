@@ -27,6 +27,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DetailsComponent } from './interface/details/details.component';
 import { PlayersComponent } from './interface/players/players.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +60,7 @@ import { PlayersComponent } from './interface/players/players.component';
     MatInputModule, 
     MatSelectModule,
     NgxPaginationModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

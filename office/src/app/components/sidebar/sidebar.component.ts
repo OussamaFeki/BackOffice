@@ -8,9 +8,14 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+  iskickoff:boolean=false;
+  panelOpenState:boolean=false;
   constructor(private authservice:AuthService,private router:Router){}
 logout(){
   this.authservice.logout();
   this.router.navigate(['']);
+}
+change(){
+  this.iskickoff=true;
 }
 }
