@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-new-owner',
   templateUrl: './new-owner.component.html',
@@ -13,7 +13,7 @@ export class NewOwnerComponent {
   packs: any[]=[];
   getservice:Subscription;
   p: number = 1;
-  constructor(private formBuilder: FormBuilder,private service:AuthService) {
+  constructor(private formBuilder: FormBuilder,private service:AuthService,private snackBar: MatSnackBar) {
     this.getservice=this.service.getAllPacks().subscribe(
       (response) => {
         this.packs = response;
@@ -53,8 +53,25 @@ export class NewOwnerComponent {
     if(this.stadeOwnerForm.valid){
       this.service.creteOwner(this.stadeOwnerForm.value).subscribe((data)=>{
         console.log(data);
+        this.snackBar.open('Owner created successfully!', 'Close', {
+          duration: 5000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+        });
         this.stadeOwnerForm.reset()
+      },(err)=>{
+        this.snackBar.open(err.error.message, 'Close', {
+          duration: 5000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+        });
       })
+    }else{
+      this.snackBar.open('complete the form','Close', {
+        duration: 5000,
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+      });
     }
     
   }

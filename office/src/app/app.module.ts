@@ -28,6 +28,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { DetailsComponent } from './interface/details/details.component';
 import { PlayersComponent } from './interface/players/players.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +62,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatInputModule, 
     MatSelectModule,
     NgxPaginationModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatMenuModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

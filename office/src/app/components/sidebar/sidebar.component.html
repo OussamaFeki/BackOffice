@@ -1,12 +1,23 @@
 <div *ngIf="iskickoff" class="navigation" id="first">
         <ul>
             <li>
-                <a href="#">
-                    <span class="icon">
-                        <img src="../../../assets/images/kickoff.png" id="logo" alt=""/>
-                    </span>
-                    <span class="title" id="logotitle">KickOff</span>
-                </a>
+                <div mat-button [matMenuTriggerFor]="menu">
+                    <a>
+                        <span class="icon">
+                            <img src="../../../assets/images/kickoff.png" id="logo" alt=""/>
+                        </span>
+                        <span class="title" id="logotitle">KickOff</span>
+                    </a>
+                </div>
+                
+                <mat-menu #menu="matMenu">
+                    <a mat-menu-item (click)="change()">
+                        <span class="icon">
+                            <img src="../../../assets/images/kickoff.png" id="logo" alt=""/>
+                        </span>
+                        <span class="title" id="logotitle">otherApp</span>
+                    </a>
+                </mat-menu>
             </li>
 
           
@@ -70,7 +81,7 @@
                 </a>
             </li>
             
-            <li>
+            <!-- <li>
                 <a href="#">
                     <span class="icon">
                         <mat-icon>
@@ -79,7 +90,7 @@
                     </span>
                     <span class="title">Password</span>
                 </a>
-            </li>
+            </li> -->
 
             <li>
                 <a (click)="logout()">
@@ -101,7 +112,7 @@
                     <img src="../../../assets/images/kickoff.png" id="logo" alt=""/>
                 </span>
                 <span class="title" id="logotitle">otherApp</span>
-            </a>-->
+            </a>
             <mat-accordion>
                 <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
@@ -122,7 +133,23 @@
                         <span class="title" id="logotitle">KickOff</span>
                     </a>
                 </mat-expansion-panel>
-            </mat-accordion>
+            </mat-accordion>-->
+            <div mat-button [matMenuTriggerFor]="menu">
+                <a>
+                    <span class="icon">
+                        <img src="../../../assets/images/kickoff.png" id="logo" alt=""/>
+                    </span>
+                    <span class="title" id="logotitle">otherApp</span>
+                </a>
+            </div>
+            <mat-menu #menu="matMenu" xPosition="after">
+                <a mat-menu-item (click)="change()">
+                    <span class="icon">
+                        <img src="../../../assets/images/kickoff.png" id="logo" alt=""/>
+                    </span>
+                    <span class="title" id="logotitle">KickOff</span>
+                </a>
+            </mat-menu>
         </li>
 
       
@@ -186,7 +213,7 @@
             </a>
         </li>
         
-        <li>
+        <!--<li>
             <a href="#">
                 <span class="icon">
                     <mat-icon>
@@ -195,7 +222,7 @@
                 </span>
                 <span class="title">Password</span>
             </a>
-        </li>
+        </li>-->
 
         <li>
             <a (click)="logout()">
